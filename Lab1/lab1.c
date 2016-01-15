@@ -124,102 +124,38 @@ void doubleMax(int a, int b, int c, int *result)
 		mov ecx, c
 
 // YOUR CODE STARTS HERE
-		/*cmp eax, ebx // a < b
-		jge ElseOuter
-
-			cmp ebx, ecx //b < c
-			jge ElseInner1
-			//a < b < c
-			add ecx, eax
-			shl ecx, 1
-			mov eax, ecx
-			jmp EndOfIf
-
-			ElseInner1: //c < b
-				cmp eax, ecx //a < c
-				jge ElseInnerInner1
-				//a < c < b
-				add ebx, eax
-				shl ebx, 1
-				mov eax, ebx
-				jmp EndOfIf
-
-				ElseInnerInner1: //c < a
-				//c < a < b
-				add ebx, ecx
-				shl ebx, 1
-				mov eax, ebx
-				jmp EndOfIf
-
-		ElseOuter://b < a
-			cmp eax, ecx //a < c
-			jge ElseInner2
-			////b < a < c
-			add ecx, ebx
-			shl ecx, 1
-			mov eax, ecx
-			jmp EndOfIf
-
-			ElseInner2: //c < a
-				cmp ecx, ebx //c < b
-				jge ElseInnerInner2
-				//c < b < a
-				add eax, ecx
-				shl eax, 1
-				jmp EndOfIf
-
-				ElseInnerInner2: //b < c
-				// b < c < a
-				add eax, ebx
-				shl eax, 1
-				jmp EndOfIf
-
-		EndOfIf:*/
 		// Find larger of a and b
 		mov edx, eax
 		cmp ebx, edx
 		jle ElseMax1
 		mov edx, ebx
-		jmp Next1
 
 		ElseMax1:
-			jmp Next1
 
-		Next1: //Find larger of a or b and c; Max is stored in edx
-			cmp ecx, edx
-			jle ElseMax2
-			mov edx, ecx
-			jmp Min
+		//Find larger of a or b and c; Max is stored in edx
+		cmp ecx, edx
+		jle ElseMax2
+		mov edx, ecx
 
-			ElseMax2:
-				jmp Min
+		ElseMax2:
 
-		Min: //Find smaller of a and b
-			cmp ebx, eax
-			jge ElseMin1
-			mov eax, ebx
-			jmp Next2
+		//Find smaller of a and b
+		cmp ebx, eax
+		jge ElseMin1
+		mov eax, ebx
 
-			ElseMin1:
-				jmp Next2
+		ElseMin1:
 
-		Next2: //Find smaller of a or b and c; Min is stored in eax
-			cmp ecx, eax
-			jge ElseMin2
-			mov eax, ecx
-			jmp End
+		//Find smaller of a or b and c; Min is stored in eax
+		cmp ecx, eax
+		jge ElseMin2
+		mov eax, ecx
 
-			ElseMin2:
-				jmp End
+		ElseMin2:
 
-		End: //Add Min and Max and store in eax; multiply eax by 2
-			add eax, edx
-			shl eax, 1
-
-
-
-
-	
+		//Add Min and Max and store in eax; multiply eax by 2
+		add eax, edx
+		shl eax, 1
 // YOUR CODE ENDS HERE
 
 		mov [esi][0], eax
